@@ -1,7 +1,7 @@
 #include "Patient.h"
 #include "kdtree.h"
 
-void read_file(std::fstream &my_file, KDNode* k1, std::string blood){
+void read_file(std::fstream &my_file, KDTree &k1, std::string blood){
 
     my_file.open("registered_patients.txt", std::ios::in);
 
@@ -19,7 +19,7 @@ void read_file(std::fstream &my_file, KDNode* k1, std::string blood){
         std::string abnegative = "ab-";
 
         while (getline(my_file, line)) {
-            std::vector<int> pt;
+            
 
         size_t found = line.find(answer);
         size_t found2 = line.find(blood);
@@ -35,55 +35,55 @@ void read_file(std::fstream &my_file, KDNode* k1, std::string blood){
             if (found != std::string::npos) {
 
                 if (found2 != std::string::npos && found8 == std::string::npos) {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
 
 
                 }
 
                 if (found8 != std::string::npos) {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
                 }
 
                 if (found4 != std::string::npos && blood == "a+" || found4 != std::string::npos && blood == "b+") {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
 
                 }
 
                 if (found7 != std::string::npos && blood == "a+" || found7 != std::string::npos && blood == "ab-") {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
 
                 }
 
                 if (found9 != std::string::npos && blood == "b+" || found9 != std::string::npos && blood == "ab-") {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
 
                 }
 
                 if (found6 == std::string::npos && blood == "ab+" && found8 == std::string::npos) {
-
+                    std::vector<int> pt;
                     pt.push_back(line[0] - '0');
                     pt.push_back(line[2] - '0');
-
+                    k1.insert(pt);
                     std::cout << "Patient in room " << pt[0] << ", " << pt[1] << " is eligible" << std::endl;
                 }
             }
@@ -118,11 +118,23 @@ int main () {
 
     if (choice == "find" || choice[0] == 'f'){
 
-        KDNode* k1;
+        KDTree k1(2);
 
         read_file(my_file, k1,find_type());
 
+
+        std::vector<int> ER;
+        ER.push_back(0);
+        ER.push_back(0);
+
+        std::vector<int> nearest_neighbor;
+        nearest_neighbor = k1.NNS(ER);
+
+        std::cout<< "Nearest donor is located in room " <<nearest_neighbor[0] << nearest_neighbor[1] << std::endl;
+
     }
+
+    
 
     return 0;
     
