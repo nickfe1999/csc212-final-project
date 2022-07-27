@@ -38,7 +38,7 @@ KDNode* KDTree::insert(std::vector<int> x, KDNode* t, int cd) {
     return t;
 }
 
-KDNode* KDTree::NNS(std::vector<int> q, KDNode* n, std::vector<int> p,float w){
+void KDTree::NNS(std::vector<int> q, KDNode* n, std::vector<int> p,float w){
     int search_first;
 
     if(n->left== nullptr && n->right == nullptr) {
@@ -51,6 +51,7 @@ KDNode* KDTree::NNS(std::vector<int> q, KDNode* n, std::vector<int> p,float w){
             w = w_prime;
             for(int i = 0; i < n->pt.size(); i++) {
                 p[i] = n->pt[i];
+                std::cout<<p[i];
             }
             
         }
@@ -82,9 +83,7 @@ KDNode* KDTree::NNS(std::vector<int> q, KDNode* n, std::vector<int> p,float w){
     }
 
 
-    for(int i = 0; i < n->pt.size();i++){
-        std::cout<<n->pt[i]; 
-    }
+    
     
 }
     

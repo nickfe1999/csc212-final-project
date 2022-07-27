@@ -19,6 +19,6 @@ private:
 public:
     KDTree(int k,std::vector<int> x);
     KDNode* insert(std::vector<int> x, KDNode *t, int cd);
-    KDNode* NNS(std::vector<int> n, KDNode *p, std::vector<int> ref_point,float ref_distance);
+    void NNS(std::vector<int> n, KDNode *p, std::vector<int> ref_point,float ref_distance);
 };
 
