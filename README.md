@@ -8,3 +8,8 @@ This project is a hospital with the room numbers representing the coordinates la
 
 In order to install and run the project, one must have all files in the repo. The program visually executes in the terminal with prompts that you follow. You can add patients manually or use a .txt file in the correct format replicating the Patients.txt. Once the first prompt is shown, user must type either 'f' for find closest patient to ER or 'r' to register a new patient. 
 
+Contact Info:
+
+adam_lubinsky@uri.edu
+nfedorenko07@uri.edu
+juan_cante@uri.edu
